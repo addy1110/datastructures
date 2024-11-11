@@ -1,6 +1,4 @@
-package core.util;
-
-import util.Pair;
+package util;
 
 public final class CoreUtils {
 

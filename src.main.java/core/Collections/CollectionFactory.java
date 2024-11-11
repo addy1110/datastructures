@@ -25,4 +25,14 @@ public final class CollectionFactory {
             default -> null;
         };
     }
+
+
+    public static int[] getIntArray( int capacity) {
+        if(capacity <=0)
+            throw new AssertionError("Please provide valid array size");
+
+        return new int[capacity];
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package System;
 
+import core.Collections.CollectionFactory;
+import core.Collections.CollectionType;
 import util.Order;
 import util.Size;
 
@@ -9,31 +11,17 @@ import java.util.Random;
 
 public final class Generator {
 
-    private static List<Integer> initializeList(Integer size){
-        return new ArrayList<>(size);
-    }
-
-    private static int[] initializeArray(int size){
-        return new int[size];
-    }
-
     public static List<Integer> generateList(){
         return generateList(Size.TINY, Order.NATURAL);
     }
 
+    @SuppressWarnings("unchecked")
     public static List<Integer> generateList(Size size, Order order){
         long start = System.currentTimeMillis();
-        List<Integer> list = initializeList(size.value);
-        //List<Integer> list = new ArrayList<>();
+        List<Integer> list = (ArrayList<Integer>)CollectionFactory.getInstance(CollectionType.ARRAY_LIST, size.value);
+        if(list == null)
+            list = new ArrayList<>();
         Random random = new Random();
-        /*for(int i=0; i<size.value; i++){
-            switch (order){
-                case RANDOM : { list.add(random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE)) break;}
-                case NATURAL: { list.add(random.nextInt(0, Integer.MAX_VALUE)) break;}
-                case NORMAL : { list.add(random.nextInt(0,1000)) break;}
-                case SORTED : { list.add(i) break;}
-            }
-        }*/
 
         switch (order) {
             case RANDOM: {
@@ -45,7 +33,9 @@ public final class Generator {
                 break;
             }
             case NORMAL: {
-                for (int i = 0; i < size.value; i++) list.add(random.nextInt(1, 1000));
+                for (int i = 0; i < size.value; i++) {
+                    list.add(random.nextInt(1, 1000));
+                }
                 break;
             }
 
@@ -72,7 +62,7 @@ public final class Generator {
 
     public static int[] generateArray(Size size, Order order){
         long start = System.currentTimeMillis();
-        int[] array = initializeArray(size.value);
+        int[] array = CollectionFactory.getIntArray(size.value);
         Random random = new Random();
         switch (order) {
             case RANDOM: {
