@@ -1,6 +1,8 @@
 package System;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class DisplayArray implements Display{
     private int[] array;
@@ -21,6 +23,16 @@ public class DisplayArray implements Display{
         if(array == null)
             return "Cannot traverse <null> array";
         return null;
+    }
+
+    @Override
+    public Collection<?> getCollection() {
+        return null;
+    }
+
+    @Override
+    public int[] getArray() {
+        return array;
     }
 
     public String show(){

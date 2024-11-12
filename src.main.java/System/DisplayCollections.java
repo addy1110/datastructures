@@ -1,6 +1,7 @@
 package System;
 
 import java.util.Collection;
+import java.util.List;
 
 public class DisplayCollections implements Display {
 
@@ -23,6 +24,15 @@ public class DisplayCollections implements Display {
         return null;
     }
 
+    @Override
+    public Collection<?> getCollection() {
+        return collection;
+    }
+
+    @Override
+    public int[] getArray() {
+        return new int[0];
+    }
 
 
     @Override

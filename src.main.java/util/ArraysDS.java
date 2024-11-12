@@ -89,8 +89,11 @@ public class ArraysDS {
         return result.stream().mapToInt(i->i).toArray();
     }
 
-    public static int[] reverse(int[] array){
-        return null;
+    public static void reverse(int[] array){
+        int len = array.length;
+        for(int i=0,j=len-1; i<len/2;i++,j--){
+            swap(array, i,j);
+        }
     }
 
     public static void reverse(List<Integer> list){
@@ -98,10 +101,19 @@ public class ArraysDS {
         // Time complexity : O(n log(n))
         //Collections.reverse(list);
 
+        // in-place reverse
+
+
         // brute force
         reverseBruteForce(list);
 
         return;
+    }
+
+    private static void swap(int[] array, int i,int j){
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     /**
@@ -118,6 +130,53 @@ public class ArraysDS {
         for(int i=0; i<reverseCopy.size(); i++){
             list.set(i,reverseCopy.get(i));
         }
+    }
+
+
+    public static void  sort(int[] a, SortType type){
+        if(a == null || a.length <=0)
+            return;
+        switch (type) {
+            case BUBBLE_SORT -> bubbleSort(a);
+            case INSERTION_SORT -> insertionSort(a);
+            case MERGE_SORT -> mergeSort(a);
+            default -> quickSort(a);
+        }
+    }
+
+    private static void insertionSort(int[] a){
+
+    }
+
+    private static void mergeSort(int[] a){
+
+    }
+
+    private static void quickSort(int[] a){
+
+    }
+
+    private static void bubbleSort(int[] a){
+        printMessage("Bubble sort...");
+        long start = System.currentTimeMillis();
+        int len = a.length;
+        for(int i=0;i<len;i++){
+            for(int j=i+1; j<len; j++){
+                if(a[i]>a[j])
+                    swap(a, i, j);
+            }
+        }
+
+        long time = System.currentTimeMillis() - start;
+        printTimeTaken(time);
+    }
+
+    private static void printMessage(String msg){
+        System.out.println(msg);
+    }
+
+    private static void printTimeTaken(long time){
+        System.out.println("Time Taken: "+time+"ms");
     }
 
 }
